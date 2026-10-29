@@ -1,0 +1,17 @@
+# Every change to the rules, the retrieval or the answer writer is scored before it can merge.
+name: release-check
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24 }
+      - run: npm test
+      - run: npm run ingest
+      - name: Release check (fails on any missed urgent message or any clinical question answered automatically)
+        run: npm run eval
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: release-check, path: reports/ }

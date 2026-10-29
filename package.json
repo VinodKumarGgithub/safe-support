@@ -1,0 +1,18 @@
+{
+  "name": "safe-support",
+  "version": "0.1.0",
+  "description": "A first-line patient support assistant with a safety gate: answers routine questions from approved public content with the source shown, hands anything clinical, urgent or account-specific to a person, and scores itself on a test set before every release.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Vinod Kumar G",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "ingest": "node src/cli.ts ingest",
+    "ask": "node src/cli.ts ask",
+    "eval": "node src/cli.ts eval",
+    "shadow": "node src/cli.ts shadow",
+    "test": "node --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": { "typescript": "^5.9.3", "@types/node": "^24.10.1" }
+}
